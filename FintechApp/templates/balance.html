@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Balances</title>
+    <style>
+        body {
+            background-color: #ff6b6b;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .balance {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: white;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Account Balances</h1>
+        {% for account in accounts %}
+            <div class="balance">
+                <p><strong>Name:</strong> {{ account.name }}</p>
+                <p><strong>Official Name:</strong> {{ account.official_name }}</p>
+                <p><strong>Subtype:</strong> {{ account.subtype }}</p>
+                <p><strong>Available Balance:</strong> {{ account.balances.available }}</p>
+                <p><strong>Current Balance:</strong> {{ account.balances.current }}</p>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+        * { margin: 0; padding: 0; }
+        body { font-family: 'Exo', sans-serif; }
+        .area {
+            background: #4e54c8; 
+            background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8); 
+            width: 100%; 
+            height: 100vh; 
+            z-index: 1; 
+            position: relative; 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        .title-container {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            margin-top: 50px; 
+            z-index: 1;
+        }
+        .title { 
+            font-family: 'Franklin Gothic Medium'; 
+            font-size: 65px; 
+            color: white; 
+            text-align: center; 
+        }
+        .subtitle { 
+            font-family: 'Franklin Gothic Medium'; 
+            font-size: 30px; 
+            color: white; 
+            text-align: center; 
+            margin-top: 50px; 
+        }
+        .circles {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            overflow: hidden; 
+            z-index: 0; 
+        }
+        .circles li {
+            position: absolute; 
+            display: block; 
+            list-style: none; 
+            width: 20px; 
+            height: 20px; 
+            background: rgba(255, 255, 255, 0.2); 
+            animation: animate 25s linear infinite; 
+            bottom: -150px;
+        }
+        .circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; animation-delay: 0s; }
+        .circles li:nth-child(2) { left: 10%; width: 20px; height: 20px; animation-delay: 2s; animation-duration: 12s; }
+        .circles li:nth-child(3) { left: 70%; width: 20px; height: 20px; animation-delay: 4s; }
+        .circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-delay: 0s; animation-duration: 18s; }
+        .circles li:nth-child(5) { left: 65%; width: 20px; height: 20px; animation-delay: 0s; }
+        .circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+        .circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+        .circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
+        .circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
+        .circles li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation-delay: 0s; animation-duration: 11s; }
+        @keyframes animate {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
+            100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
+        }
+        .content-container {
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: calc(100vh - 100px); 
+            z-index: 1; 
+            position: relative;
+        }
+        .card-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 150px; 
+            margin-top: 20px; 
+            margin-bottom: 20px; 
+        }
+        .card { 
+            background: white; 
+            color: #000; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+            width: 400px; 
+            text-align: center; 
+            transition: transform 0.3s, box-shadow 0.3s; 
+        }
+        .card h3 { margin-bottom: 10px; }
+        .card p { font-size: 1.2em; font-weight: bold; }
+        .card:hover { transform: translateY(-10px); box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); }
+        .button-container { 
+            margin-top: 20px; 
+            display: flex; 
+            justify-content: center; 
+        }
+        .button {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #000000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .currency-switch-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "INR";
+            height: 20px;
+            width: 20px;
+            left: 5px;
+            bottom: 5px;
+            background-color: white;
+            color: black;
+            font-size: 10px;
+            line-height: 20px;
+            text-align: center;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+            content: "USD";
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            function animateValue(obj, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    obj.innerHTML = Math.floor(progress * (end - start) + start);
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            const totalSpent = document.getElementById("totalSpent");
+            const totalEarned = document.getElementById("totalEarned");
+
+            animateValue(totalSpent, 0, {{ ai_data.total_spent }}, 5000); 
+            animateValue(totalEarned, 0, {{ ai_data.total_earned }}, 5000);
+        });
+    </script>
+    <script>
+        function toggleCurrency() {
+            var checkbox = document.querySelector('.switch input');
+            var currency = checkbox.checked ? 'USD' : 'INR';
+            window.location.href = "{{ url_for('analytics2') }}?currency=" + currency;
+        }
+    </script>
+</head>
+<body>
+    <div class="area">
+        <ul class="circles">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="currency-switch-container">
+            <label class="switch">
+                <input type="checkbox" name="currency" value="USD" {% if currency == "USD" %}checked{% endif %} onchange="toggleCurrency()">
+                <span class="slider"></span>
+            </label>
+        </div>
+        <div class="title-container">
+            <div class="title">{{ title }}</div>
+            <div class="subtitle">{{ subtitle }}</div>
+        </div>
+        <div class="content-container">
+            <div class="card-container">
+                <div class="card">
+                    <h3>Total Spent</h3>
+                    <p id="totalSpent">{{ai_data.total_spent}}</p>
+                </div>
+                <div class="card">
+                    <h3>Total Earned</h3>
+                    <p id="totalEarned">{{ai_data.total_earned}}</p>
+                </div>
+            </div>
+            <div class="button-container">
+                <form method="post" action="{{ url_for('post_analytics2', currency = currency) }}">
+                    <input type="hidden" name="ai_analysis" value="{{ ai_analysis }}">
+                    <button class="button" type="submit">Next</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

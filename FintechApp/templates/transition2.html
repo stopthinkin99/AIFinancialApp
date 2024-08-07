@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='global.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='transition2.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Circular ProTT:wght@700;900&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Guillon:wght@400&display=swap"
+    />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        .twitter-banner1 {
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            position: relative;
+            background-color: var(--pretty-pink);
+            overflow: hidden;
+            line-height: normal;
+            letter-spacing: normal;
+            text-align: center; /* Center align text */
+            font-size: var(--font-size-27xl-5);
+            color: var(--marine-blue);
+            font-family: var(--mobile-overline);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .center-text {
+            position: relative;
+            right: 290px;
+            top: 300px;
+            font-family: 'Franklin Gothic Medium';
+            font-size: 30px;
+            color: #030303;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .loader-container {
+            position: absolute;
+            bottom: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        .bouncing-dots {
+            display: flex;
+            justify-content: space-between;
+            width: 60px;
+        }
+        .dot {
+            width: 15px;
+            height: 15px;
+            background-color: #FF5C35;
+            border-radius: 50%;
+            animation: bounce 1.5s infinite;
+        }
+        .dot:nth-child(1) {
+            animation-delay: 0s;
+        }
+        .dot:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+        .dot:nth-child(3) {
+            animation-delay: 0.6s;
+        }
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        .group-icon8 {
+            position: absolute;
+            top: 100px;
+            left: -600px;
+            width: 2200.8px;
+            height: 100vh; /* Full viewport height */
+            object-fit: contain;
+        }
+    </style>
+    <script>
+        // Redirect to analytics3.html after 3 seconds
+        setTimeout(function() {
+            window.location.href = "{{ url_for('analytics3', ai_analysis=request.args.get('ai_analysis'), currency=currency) }}";
+        }, 10000); // 3000 milliseconds = 3 seconds
+    </script>
+</head>
+<body>
+    <div class="twitter-banner1">
+        <section class="frame-section">
+            <img class="group-icon8" alt="" src="{{ url_for('static', filename='group4@2x.png') }}" />
+            <div class="center-text">{{ dynamic_text }}</div>
+        </section>
+        <div class="loader-container">
+            <div class="bouncing-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

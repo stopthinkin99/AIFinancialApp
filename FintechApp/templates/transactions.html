@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transactions</title>
+    <style>
+        body {
+            background-color: #ff6b6b;
+            color: black;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .transactions {
+            max-height: 400px;
+            overflow-y: scroll;
+            margin-bottom: 20px;
+        }
+        .transaction-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .button {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #000000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Transactions</h1>
+        <div class="transactions">
+            <ul>
+                {% for transaction in transactions %}
+                    <li class="transaction-item">
+                        {{ transaction.date }} - {{ transaction.name }} - {{ transaction.amount }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <p>Total Spent: {{ total_spent }}</p>
+        <p>Total Earned: {{ total_earned }}</p>
+        <button class="button" onclick="window.location.href='/get_balance'">Next</button>
+    </div>
+</body>
+</html>

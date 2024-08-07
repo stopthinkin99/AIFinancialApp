@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://fonts.googleapis.com/css?family=Rubik Pixels' rel='stylesheet'>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #c10909;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .solar-system {
+            position: relative;
+        }
+        .sun {
+            top: 31%;
+            left:43%;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            cursor: pointer;
+        }
+        .orbit_1, .orbit_2, .orbit_3, .orbit_4, .orbit_5, .orbit_6, .orbit_7, .orbit_8 {
+            pointer-events: none;
+            position: absolute;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            z-index: 1;
+            opacity: 50%;
+        }
+        .orbit_1 { top: 33%; width: 24%; height: 25%; }
+        .orbit_2 { top: 27%; width: 32%; height: 37%; }
+        .orbit_3 { top: 22%; width: 39%; height: 47%; }
+        .orbit_4 { top: 18%; width: 43%; height: 55%; }
+        .orbit_5 { top: 13%; width: 50%; height: 65%; }
+        .orbit_6 { top: 10%; width: 57%; height: 73%; }
+        .orbit_7 { top: 8%; width: 65%; height: 78%; }
+        .orbit_8 { top: 5%; width: 72%; height: 84%; }
+        .planet {
+            position: absolute;
+            width: 66px;
+            height: 58px;
+            cursor: pointer;
+        }
+        .planet_earth { width: 68px; height: 60px; }
+        .mercury { top: 40%; left: 36.5%; opacity: 100%; }
+        .venus { top: 24%; left: 50%; }
+        .earth { top: 40%; left: 67%; }
+        .mars { top: 70%; left: 46%; }
+        .jupiter { top: 66%; left: 65%; }
+        .saturn { top: 56%; left: 21.5%; }
+        .uranus { top: 33%; left: 79%; }
+        .neptune { top: 10%; left: 26%; }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/static/images/stars_image.jpeg') repeat;
+            z-index: 0;
+            opacity: 85%;
+        }
+        .info-text {
+            position: absolute;
+            top: 5%;
+            right: 25px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            z-index: 2;
+            font-family: "Rubik Pixels";
+            font-size: 18px;
+            color: #fefbfb;
+            text-align: center;
+            margin-top: 5px;
+            transition: color 0.3s ease;
+        }
+        .info-text:hover {
+            color: #ffdf00;
+        }
+        .slide-box {
+            position: fixed;
+            top: 0;
+            right: -60%;
+            width: 50%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 20px;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: right 0.5s ease;
+            overflow-y: auto;
+            z-index: 3;
+        }
+        .slide-box.open {
+            right: 0;
+        }
+        .slide-box .close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        .planet-info-box {
+            display: none;
+            position: absolute;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 12px;
+            color: white;
+            z-index: 2;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="stars"></div>
+        <div class="planet-wrapper">
+            <a href="{{ url_for('sun') }}">
+                <img class="sun" src="/static/images/sun-image.png" alt="sun">
+            </a>
+            <div class="planet-info-box" id="sun">Sun (Surya) - Power and Leadership. Click to know more...</div>
+        </div>
+        <div class="orbit_1"></div>
+        <a href="{{ url_for('mercury') }}">
+            <img class="planet mercury" src="/static/images/mercury-image.png" alt="mercury">
+        </a>
+        <div class="planet-info-box" id="mercury-info">Mercury (Budha) - Communication and Intelligence. Click to know more...</div>        
+        <div class="orbit_2"></div>
+        <a href="{{ url_for('venus') }}">
+            <img class="planet venus" src="/static/images/venus-image.png" alt="venus">
+        </a>
+        <div class="planet-info-box" id="venus-info">Venus (Shukra) - Beauty and Wealth. Click to know more...</div> 
+        <div class="orbit_3"></div>
+        <a href="{{ url_for('moon') }}">
+            <img class="planet earth" src="/static/images/earth-image.png" alt="earth">
+        </a>
+        <div class="planet-info-box" id="earth-info">Moon (Chandra) - Stability and Growth. Click to know more...</div>
+        <div class="orbit_4"></div>
+        <a href="{{ url_for('mars') }}">
+            <img class="planet mars" src="/static/images/mars-image.png" alt="mars">
+        </a>
+        <div class="planet-info-box" id="mars-info">Mars (Mangal) - Energy and Initiative. Click to know more...</div>
+        <div class="orbit_5"></div>
+        <a href="{{ url_for('jupiter') }}">
+            <img class="planet jupiter" src="/static/images/jupiter-image.png" alt="jupiter">
+        </a>
+        <div class="planet-info-box" id="jupiter-info">Jupiter (Guru) - Wisdom and Abundance. Click to know more...</div>
+        <div class="orbit_6"></div>
+        <a href="{{ url_for('saturn') }}">
+            <img class="planet saturn" src="/static/images/saturn-image.png" alt="saturn">
+        </a>
+        <div class="planet-info-box" id="saturn-info">Saturn (Shani) - Discipline and Structure. Click to know more...</div>
+        <div class="orbit_7"></div>
+        <a href="{{ url_for('uranus') }}">
+            <img class="planet uranus" src="/static/images/uranus-image.png" alt="uranus">
+        </a>
+        <div class="planet-info-box" id="uranus-info">Uranus (Rahu) - Ambition and Materialism. Click to know more...</div>
+        <div class="orbit_8"></div>
+        <a href="{{ url_for('neptune') }}">
+            <img class="planet neptune" src="/static/images/neptune-image.png" alt="neptune">
+        </a>
+        <div class="planet-info-box" id="neptune-info">Neptune (Ketu) - Spirituality and Liberation. Click to know more...</div>
+        <div class="info-text" onclick="openSlideBox()"><h1>The नवgraha  of  Finance</h1></div>
+    </div>
+    <div class="slide-box" id="slideBox">
+        <div class="close-btn" onclick="closeSlideBox()">✖</div>
+        <h1>The नवgraha of Finance</h1>
+    <p>In Hinduism, the 9 Grahas (planets) are believed to influence various aspects of life, including our financial well-being. Here’s a brief overview of how each Graha is associated with financial abilities:</p>
+    <ul>
+        <li><strong>Sun (Surya) - Power and Leadership</strong><br>The Sun symbolizes authority and leadership. In finance, Surya represents the ability to lead, make bold decisions, and drive financial success with confidence.</li>
+        <li><strong>Moon (Chandra) - Emotions and Mind</strong><br>The Moon governs emotions and intuition. Chandra signifies the importance of emotional intelligence and mental clarity in making sound financial decisions.</li>
+        <li><strong>Mars (Mangal) - Energy and Initiative</strong><br>Mars embodies energy and courage. Mangal’s influence in finance translates to the drive to pursue new opportunities and take calculated risks for wealth creation.</li>
+        <li><strong>Mercury (Budha) - Communication and Intelligence</strong><br>Mercury stands for intellect and communication. Budha represents the ability to analyze market trends, communicate effectively, and make informed financial decisions.</li>
+        <li><strong>Jupiter (Guru) - Wisdom and Abundance</strong><br>Jupiter signifies wisdom and abundance. Guru’s presence is associated with wealth accumulation, financial growth, and wise long-term investments.</li>
+        <li><strong>Venus (Shukra) - Beauty and Wealth</strong><br>Venus represents beauty and luxury. Shukra’s influence in finance is seen in the pursuit of prosperity and investments in assets that grow in value and provide aesthetic pleasure.</li>
+        <li><strong>Saturn (Shani) - Discipline and Structure</strong><br>Saturn symbolizes discipline and structure. Shani’s impact on finance is seen in disciplined saving habits, structured planning, and perseverance to achieve long-term goals.</li>
+        <li><strong>Rahu - Ambition and Materialism</strong><br>Rahu represents ambition and material desires. In finance, Rahu’s influence drives the pursuit of wealth through unconventional means and innovative strategies.</li>
+        <li><strong>Ketu - Spirituality and Liberation</strong><br>Ketu signifies spirituality and detachment. In finance, Ketu promotes a balanced approach to wealth, emphasizing financial freedom and a minimalist lifestyle.</li>
+    </ul>
+    <p>This concise overview provides a layman-friendly introduction to the 9 Grahas of Finance, highlighting their significance and financial associations.</p>
+    <form method="post" action="{{ url_for('post_analytics3') }}">
+        <input type="hidden" name="ai_analysis" value="{{ ai_analysis }}">
+        <button class="button" type="submit">Next</button>
+    </form>
+    </div>
+
+    <script>
+        // Update the JavaScript code to target the wrapper element
+        const planetWrappers = document.querySelectorAll('.planet-wrapper');
+
+        planetWrappers.forEach(wrapper => {
+        wrapper.addEventListener('mouseover', (e) => {
+            const infoBox = wrapper.querySelector('.planet-info-box');
+            infoBox.style.display = 'block';
+            infoBox.style.top = `${e.pageY}px`;
+            infoBox.style.left = `${e.pageX + 15}px`;
+        });
+
+        wrapper.addEventListener('mouseout', (e) => {
+            const infoBox = wrapper.querySelector('.planet-info-box');
+            infoBox.style.display = 'none';
+        });
+        });
+        function openSlideBox() {
+            document.getElementById('slideBox').classList.add('open');
+        }
+
+        function closeSlideBox() {
+            document.getElementById('slideBox').classList.remove('open');
+        }
+
+        const planets = document.querySelectorAll('.planet');
+        planets.forEach(planet => {
+            planet.addEventListener('mouseover', (e) => {
+                const infoBox = document.getElementById(`${e.target.alt}-info`);
+                infoBox.style.display = 'block';
+                infoBox.style.top = `${e.pageY}px`;
+                infoBox.style.left = `${e.pageX + 15}px`;
+            });
+            planet.addEventListener('mouseout', (e) => {
+                const infoBox = document.getElementById(`${e.target.alt}-info`);
+                infoBox.style.display = 'none';
+            });
+        });
+    </script>
+</body>
+</html>

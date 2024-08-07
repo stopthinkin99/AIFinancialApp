@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            color: white;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .planet {
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            width: 600px;
+            height: 500px;
+            transform: translate(-50%, -50%);
+        }
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('/static/images/stars_image.jpeg') repeat;
+            z-index: 0;
+            opacity: 80%;
+        }
+        .info-container {
+            font-family: 'Franklin Gothic Medium';
+            font-size: 2d0px;
+            color: #f9f9f9;
+            text-align: center;
+            margin-top: 5px;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            width: 400px;
+            height: 320px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            transform: translateY(-50%);
+            text-align: left;
+            z-index: 1;
+        }
+        .info-container h2 {
+            margin-top: 0;
+        }
+        .info-container p {
+            margin: 10px 0;
+        }
+        .text-container h1 {
+            margin: 0;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .text-container p {
+            margin: 0;
+            font-size: 16px;
+        }
+        .button-container {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        .button {
+            background-color: #000000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+    <title>Sun</title>
+</head>
+<body>
+    <div class="container">
+        <div class="stars"></div>
+        <img class="planet" src="/static/images/mars-image.png" alt="mars">
+        <div class="info-container">
+            <div class="kpi">
+                <h2>Opportunity Pursuit Score</h2>
+                <p>{{ kpis.opportunity_pursuit_score }}</p>
+            </div>
+            <div class="kpi">
+                <h2>Risk Adjusted Return</h2>
+                <p>{{ kpis.risk_adjusted_return}}</p>
+            </div>
+        </div>
+        <div class="button-container">
+            <a href="analytics4.html"><button class="button">Next</button></a>
+        </div>
+    </div>
+</body>
+</html>

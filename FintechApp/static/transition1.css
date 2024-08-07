@@ -1,0 +1,58 @@
+.spotifywrapped2 {
+    position: absolute;
+    height: 8%;
+    width: 21.47%;
+    top: 10%;
+    left: 75.2%;
+    letter-spacing: 0.01em;
+    font-weight: 900;
+    display: inline-block;
+    z-index: 1;
+  }
+  .group-icon7 {
+    position: absolute;
+    top: 0;
+    left: -11.7px;
+    width: 2235.8px;
+    height: 731.3px;
+    object-fit: cover;
+  }
+  .graphic-icon {
+    position: absolute;
+    top: 16.5px;
+    left: 72.7px;
+    width: 286.6px;
+    height: 85.8px;
+    z-index: 1;
+  }
+  .frame-section {
+    position: absolute;
+    top: 56.2px;
+    left: 0;
+    width: 2182px;
+    height: 671.1px;
+  }
+  .twitter-banner {
+    width: 100%;
+    height: 727.3px;
+    position: relative;
+    background-color: var(--minty-green);
+    overflow: hidden;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: left;
+    font-size: 46.5px;
+    color: var(--marine-blue);
+    font-family: var(--mobile-overline);
+  }
+  @media screen and (max-width: 767px) {
+    .spotifywrapped2 {
+      font-size: 37px;
+    }
+  }
+  @media screen and (max-width: 450px) {
+    .spotifywrapped2 {
+      font-size: 28px;
+    }
+  }
+  

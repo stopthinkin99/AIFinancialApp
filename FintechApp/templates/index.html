@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Statement Analytics</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fetch the link token from the server
+            fetch('/create_link_token', {
+                method: 'POST'
+            }).then(response => response.json())
+              .then(data => {
+                  if (data.link_token) {
+                      var linkHandler = Plaid.create({
+                          token: data.link_token,
+                          onSuccess: function(public_token, metadata) {
+                              // Send the public_token to your app server here.
+                              fetch('/exchange_public_token', {
+                                  method: 'POST',
+                                  headers: {
+                                      'Content-Type': 'application/json'
+                                  },
+                                  body: JSON.stringify({ public_token: public_token })
+                              }).then(response => response.json())
+                                .then(data => {
+                                    if (data.public_token_exchange === 'complete') {
+                                        window.location.href = data.redirect_url; // Redirect to the transactions page
+                                    } else {
+                                        alert('Error: ' + data.error);
+                                    }
+                                }).catch(error => {
+                                    console.error('Error:', error);
+                                });
+                          },
+                          onExit: function(err, metadata) {
+                              // The user exited the Link flow.
+                              if (err != null) {
+                                  console.error(err);
+                              }
+                          }
+                      });
+
+                      document.getElementById('link-button').onclick = function() {
+                          linkHandler.open();
+                      };
+                  } else {
+                      alert('Error creating link token');
+                  }
+              }).catch(error => {
+                  console.error('Error:', error);
+              });
+        });
+    </script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="upload-container">
+            <div class="upload-section">
+                <h1>Connect Your Bank Account</h1>
+                <button id="link-button">Connect with Plaid</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

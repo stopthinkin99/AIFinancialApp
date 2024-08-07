@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet" href="/static/globaldashboard.css" />
+    <link rel="stylesheet" href="/static/dashboard.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Work Sans:wght@400;500;700&display=swap"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="financial-dashboard">
+    <div class="main">
+      <div class="navigation-and-header-parent">
+        <div class="navigation-and-header">
+          <img
+            class="logo-icon"
+            loading="lazy"
+            alt=""
+          />
+        </div>
+        <div class="sidebar-section">
+          <button class="sidebar-item">
+            <div class="text">
+              <img
+                class="huge-iconinterfacesolidapps"
+                alt=""
+                src="/static/images/hugeiconinterfacesolidapps@2x.png"
+              />
+              <div class="section">Dashboard</div>
+            </div>
+          </button>
+          <button class="sidebar-item1">
+            <div class="text">
+              <img
+                class="huge-iconfinance-and-payment"
+                loading="lazy"
+                alt=""
+                src="/static/images/hugeiconfinance-and-paymentsolidpie-chart@2x.png"
+              />
+              <a class="section1">Analytics</a>
+            </div>
+          </button>
+          <button class="sidebar-item2">
+            <div class="text">
+              <img
+                class="huge-iconfinance-and-payment"
+                loading="lazy"
+                alt=""
+                src="/static/images/hugeiconfinance-and-paymentsolidtransfer@2x.png"
+              />
+              <div class="section2">Transaction</div>
+            </div>
+          </button>
+          <button class="sidebar-item3">
+            <div class="text">
+              <img
+                class="huge-iconinterfacesolidsett"
+                loading="lazy"
+                alt=""
+                src="/static/images/hugeiconinterfacesolidsetting.svg"
+              />
+              <div class="section3">Setting</div>
+            </div>
+          </button>
+          <button class="sidebar-item4">
+            <div class="text">
+              <img
+                class="huge-iconinterfacesolidsett"
+                loading="lazy"
+                alt=""
+                src="/static/images/iconroundaccount-circle.svg"
+              />
+              <a class="section4">Account</a>
+            </div>
+          </button>
+          <button class="sidebars-items-sections">
+            <div class="text5">
+              <img class="huge-iconfinance-and-payment" alt="" />
+              <div class="section5">Section</div>
+            </div>
+          </button>
+          <button class="sidebars-items-sections">
+            <div class="text5">
+              <img class="huge-iconfinance-and-payment" alt="" />
+              <div class="section5">Section</div>
+            </div>
+          </button>
+          <button class="sidebars-items-sections">
+            <div class="text5">
+              <img class="huge-iconfinance-and-payment" alt="" />
+              <div class="section5">Section</div>
+            </div>
+          </button>
+        </div>
+      </div>
+    </div>
+    <main class="search-parent">
+      <header class="search">
+        <div class="textfield">
+          <img
+            class="iconroundsearch"
+            alt=""
+            src="/static/images/iconroundsearch.svg"
+          />
+          <a class="search1">Search</a>
+        </div>
+        <div class="user-actions">
+          <div class="textfield1">
+            <img
+              class="huge-iconinterfacesolidsett"
+              alt=""
+              src="/static/images/iconroundnotifications-none.svg"
+            />
+          </div>
+          <div class="avatar">
+            <div class="avatar-child"></div>
+            <div class="badgetnumeric-value">
+              <div class="div">50</div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="title-button">
+        <h1 class="dashboard">Dashboard</h1>
+        <button class="button">
+          <div class="text8">
+            <div class="text-detail">
+              <img
+                class="iconroundsearch"
+                alt=""
+                src="/static/images/iconsharpfilter2line.svg"
+              />
+              <a class="primary-button">Filter</a>
+              <img class="iconroundarrow-forward" alt="" />
+            </div>
+          </div>
+        </button>
+        <button class="button1">
+          <button class="text9">
+            <button class="text-detail1">
+              <img
+                class="iconroundsearch"
+                alt=""
+                src="/static/images/iconroundadd.svg"
+              />
+              <a class="primary-button1">Add new</a>
+              <img class="iconroundarrow-forward" alt="" />
+            </button>
+          </button>
+        </button>
+      </div>
+      <section class="content-area">
+        <div class="stats-and-chart">
+          <div class="boxes">
+            <div class="statistic-box">
+              <div class="balance-icons-parent">
+                <div class="balance-icons">
+                  <img
+                    class="huge-iconfinance-and-payment"
+                    loading="lazy"
+                    alt=""
+                    src="/static/images/hugeiconfinance-and-paymentsolidwallet-01@2x.png"
+                  />
+                </div>
+              </div>
+              <div class="balance">Balance</div>
+              <b class="balance-amounts">${{ balance }}</b>
+            </div>
+            <div class="statistic-box">
+              <div class="balance-icons-parent">
+                <div class="huge-iconfinance-and-payment-wrapper">
+                  <img
+                    class="huge-iconfinance-and-payment"
+                    loading="lazy"
+                    alt=""
+                    src="/static/images/hugeiconfinance-and-paymentsolidwallet-011@2x.png"
+                  />
+                </div>
+              </div>
+              <div class="incomes-this-month">Total Income</div>
+              <b class="balance-amounts">${{income_this_month}}</b>
+            </div>
+            <div class="statistic-box2">
+              <div class="balance-icons-parent">
+                <div class="huge-iconfinance-and-payment-container">
+                  <img
+                    class="huge-iconfinance-and-payment"
+                    loading="lazy"
+                    alt=""
+                    src="/static/images/hugeiconfinance-and-paymentsolidwallet-012@2x.png"
+                  />
+                </div>
+              </div>
+              <div class="incomes-this-month">Total Expense</div>
+              <b class="balance-amounts">${{expense_this_month}}</b>
+            </div>
+          </div>
+          <div class="revenue-chart">
+            <div class="top-section">
+              <div class="header">
+                <div class="your-balance">Your Balance</div>
+                <div class="balance-amount-area">
+                  <b class="balance-placeholder">${{total_balance}}</b>
+                </div>
+              </div>
+              <div class="chart-selections">
+                <select id="chartPeriod" onchange="fetchChartData()">
+                  <option value="7">Last 7 days</option>
+                  <option value="30">Last 30 days</option>
+                  <option value="90">Last 3 months</option>
+                </select>
+                <div id="incomeTab" class="selectionunderline" onclick="setChartType('income')">
+                  <div class="iconroundaccount-circle-parent">
+                    <img class="iconroundaccount-circle1" alt="" />
+                    <div class="label">Incomes</div>
+                  </div>
+                </div>
+                <div id="expenseTab" class="selectionunderline" onclick="setChartType('expense')">
+                  <div class="iconroundaccount-circle-parent">
+                    <img class="iconroundaccount-circle1" alt="" />
+                    <div class="label">Expense</div>
+                  </div>
+                </div>
+                <div id="savingsTab" class="selectionunderline" onclick="setChartType('savings')">
+                  <div class="iconroundaccount-circle-parent">
+                    <img class="iconroundaccount-circle1" alt="" />
+                    <div class="label2">Savings</div>
+                  </div>
+                </div>
+                <div id="investmentTab" class="selectionunderline" onclick="setChartType('investment')">
+                  <div class="iconroundaccount-circle-parent">
+                    <img class="iconroundaccount-circle1" alt="" />
+                    <div class="label3">Investment</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chart">
+              <canvas id="myChart"></canvas>
+            </div>
+          </div>
+        </div>
+        <div class="statistic-box-parent">
+          <div class="statistic-box3">
+            <div class="breakdown-header">
+              <div class="analytics">Analytics</div>
+              <img
+                class="iconroundsearch"
+                alt=""
+                src="/static/images/iconroundinfo-outline.svg"
+              />
+            </div>
+            <div class="analytics-selections">
+              <div class="selectionunderline4">
+                <div class="iconroundaccount-circle-parent">
+                  <img class="iconroundaccount-circle1" alt="" />
+                  <div class="label">Incomes</div>
+                </div>
+              </div>
+              <input
+                class="selectionunderline5"
+                placeholder="Expenses"
+                type="text"
+              />
+            </div>
+            <div class="category">
+              <div class="category1">
+                <div class="category-child"></div>
+                <div class="category-1">Category 1</div>
+              </div>
+              <div class="category2">
+                <div class="category-item"></div>
+                <div class="category-1">Category 2</div>
+              </div>
+              <div class="category2">
+                <div class="category-inner"></div>
+                <div class="category-1">Category 3</div>
+              </div>
+              <div class="category2">
+                <div class="ellipse-div"></div>
+                <div class="category-1">Category 4</div>
+              </div>
+            </div>
+            <div class="breakdown-chart">
+              <div class="donut-chart-container">
+                <div class="chart-area">
+                  <div class="chart-point"></div>
+                </div>
+                <div class="donut-segments">
+                  <div class="segment-details-wrapper">
+                    <div class="segment-details">
+                      <div class="chart-value-placeholder">
+                        <div class="chart-value">28%</div>
+                      </div>
+                      <div class="chart-bars">
+                        <img
+                          class="chart-icon"
+                          loading="lazy"
+                          alt=""
+                          src="/static/images/chart.svg"
+                        />
+                        <div class="segment-legend">
+                          <div class="balance-container-parent">
+                            <div class="balance-container">
+                              <div class="value-placeholder">
+                                <div class="empty-value">16%</div>
+                              </div>
+                            </div>
+                            <div class="value-placeholder">
+                              <div class="empty-value">13%</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="value-placeholder">
+                          <div class="chart-value">43%</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="expenses-chart-legend">
+                    <div class="household">Household</div>
+                    <div class="expense-categories">
+                      <div class="expense-category">
+                        <div class="category-icon"></div>
+                      </div>
+                      <div class="food">Food</div>
+                    </div>
+                    <div class="expense-categories">
+                      <div class="expense-category">
+                        <div class="frame-child1"></div>
+                      </div>
+                      <div class="clothing">Clothing</div>
+                    </div>
+                    <div class="expense-categories">
+                      <div class="expense-category">
+                        <div class="frame-child2"></div>
+                      </div>
+                      <div class="entertainment">Entertainment</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="statistic-box4">
+              <div class="transactions">Transactions</div>
+              <img class="iconroundinfo-outline1" loading="lazy" alt="" src="/static/images/iconroundinfo-outline.svg" />
+              <div class="column" style="max-height: 350px; overflow-y: auto;">
+                {% for txn in transactions %}
+                <div class="transaction-item">
+                  <div class="transaction-marker" style="background-color: {{ txn['marker_color'] }};"></div>
+                  <div class="transaction-details">
+                    <div class="transaction-info">
+                      <div class="lunch-money">{{ txn['name'] }}</div>
+                      <div class="april-2023">{{ txn['date'] }}</div>
+                    </div>
+                    <div class="spacer" style="color: {{ 'green' if txn['amount'] > 0 else 'red' }};">
+                      {{ '+' if txn['amount'] > 0 else '-' }}${{ txn['amount']|abs|round(2) }}
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      let currentChart;
+      let chartType = 'income';
+
+      function setChartType(type) {
+          chartType = type;
+          fetchChartData();
+          document.getElementById('incomeTab').classList.remove('active');
+          document.getElementById('expenseTab').classList.remove('active');
+          document.getElementById('savingsTab').classList.remove('active');
+          document.getElementById('investmentTab').classList.remove('active');
+          document.getElementById(type + 'Tab').classList.add('active');
+      }
+
+      function fetchChartData() {
+          const period = document.getElementById('chartPeriod').value;
+          fetch(`/get_chart_data?type=${chartType}&period=${period}`)
+              .then(response => response.json())
+              .then(data => {
+                  if (currentChart) {
+                      currentChart.destroy();
+                  }
+                  const ctx = document.getElementById('myChart').getContext('2d');
+                  currentChart = new Chart(ctx, {
+                      type: 'line',
+                      data: {
+                          labels: data.labels,
+                          datasets: [{
+                              label: `${chartType.charAt(0).toUpperCase() + chartType.slice(1)} over time`,
+                              data: data.values,
+                              borderColor: 'blue',
+                              fill: false,
+                              tension: 0.1
+                          }]
+                      },
+                      options: {
+                          scales: {
+                              x: {
+                                  type: 'time',
+                                  time: {
+                                      unit: 'day'
+                                  }
+                              },
+                              y: {
+                                  beginAtZero: true
+                              }
+                          }
+                      }
+                  });
+              });
+      }
+
+      document.addEventListener('DOMContentLoaded', function() {
+          setChartType('income');
+      });
+    </script>
+  </body>
+</html>

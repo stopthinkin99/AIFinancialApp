@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect Your Bank Account</title>
+    <style>
+        body {
+            background-color: #FF6F61;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #007BFF;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .container button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #FFFFFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Connect Your Bank Account</h1>
+        <button id="link-button">Connect with Plaid</button>
+    </div>
+    <script src="https://cdn.plaid.com/link/v2/stable/link-initialize.js"></script>
+    <script>
+        document.getElementById('link-button').onclick = function () {
+            var handler = Plaid.create({
+                token: '{{ link_token }}',
+                onSuccess: function(public_token, metadata) {
+                    // Send the public_token to your server
+                    fetch('/exchange_public_token', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            public_token: public_token,
+                        }),
+                    }).then(response => response.json()).then(data => {
+                        if (data.public_token_exchange === 'complete') {
+                            window.location.href = '/analytics1';
+                        }
+                    });
+                },
+                onExit: function(err, metadata) {
+                    // Handle the case when the user exits the Link flow.
+                },
+            });
+            handler.open();
+        };
+    </script>
+</body>
+</html>

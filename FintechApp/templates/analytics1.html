@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <style>
+        body {
+            --s: 25vmin;
+            --p: calc(var(--s) / 2);
+            --c1: rgb(228, 71, 97);
+            --c2: rgb(224, 119, 21);
+            --c3: rgb(16, 52, 232);
+            --bg: var(--c3);
+            --d: 4000ms;
+            --e: cubic-bezier(0.76, 0, 0.24, 1);
+
+            background-color: var(--bg);
+            background-image:
+                linear-gradient(45deg, var(--c1) 25%, transparent 25%),
+                linear-gradient(-45deg, var(--c1) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, var(--c2) 75%),
+                linear-gradient(-45deg, transparent 75%, var(--c2) 75%);
+            background-size: var(--s) var(--s);
+            background-position:
+                calc(var(--p) *  1) calc(var(--p) *  0),
+                calc(var(--p) * -1) calc(var(--p) *  1),
+                calc(var(--p) *  1) calc(var(--p) * -1),
+                calc(var(--p) * -1) calc(var(--p) *  0);
+            animation:
+                color var(--d) var(--e) infinite,
+                position var(--d) var(--e) infinite;
+        }
+
+        @keyframes color {
+            0%, 25% {
+                --bg: var(--c3);
+            }
+            26%, 50% {
+                --bg: var(--c1);
+            }
+            51%, 75% {
+                --bg: var(--c3);
+            }
+            76%, 100% {
+                --bg: var(--c2);
+            }
+        }
+
+        @keyframes position {
+            0% {
+                background-position:
+                    calc(var(--p) *  1) calc(var(--p) *  0),
+                    calc(var(--p) * -1) calc(var(--p) *  1),
+                    calc(var(--p) *  1) calc(var(--p) * -1),
+                    calc(var(--p) * -1) calc(var(--p) *  0);
+            }
+            25% {
+                background-position:
+                    calc(var(--p) *  1) calc(var(--p) *  4),
+                    calc(var(--p) * -1) calc(var(--p) *  5),
+                    calc(var(--p) *  1) calc(var(--p) *  3),
+                    calc(var(--p) * -1) calc(var(--p) *  4);
+            }
+            50% {
+                background-position:
+                    calc(var(--p) *  3) calc(var(--p) * 8),
+                    calc(var(--p) * -3) calc(var(--p) * 9),
+                    calc(var(--p) *  2) calc(var(--p) * 7),
+                    calc(var(--p) * -2) calc(var(--p) * 8);
+            }
+            75% {
+                background-position:
+                    calc(var(--p) *  3) calc(var(--p) * 12),
+                    calc(var(--p) * -3) calc(var(--p) * 13),
+                    calc(var(--p) *  2) calc(var(--p) * 11),
+                    calc(var(--p) * -2) calc(var(--p) * 12);
+            }
+            100% {
+                background-position:
+                    calc(var(--p) *  5) calc(var(--p) * 16),
+                    calc(var(--p) * -5) calc(var(--p) * 17),
+                    calc(var(--p) *  5) calc(var(--p) * 15),
+                    calc(var(--p) * -5) calc(var(--p) * 16);
+            }
+        }
+
+        @media (prefers-reduced-motion) {
+            body {
+                animation: none;
+            }
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Franklin Gothic Medium';
+            font-size: 80px;
+            color: #000000;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .subtitle {
+            font-family: 'Franklin Gothic Medium';
+            font-size: 30px;
+            color: #000000;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .button {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #000000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .currency-switch-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "INR";
+            height: 20px;
+            width: 20px;
+            left: 5px;
+            bottom: 5px;
+            background-color: white;
+            color: black;
+            font-size: 8px;
+            line-height: 20px;
+            text-align: center;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: #2196F3;
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(30px);
+            content: "USD";
+        }
+    </style>
+    <script>
+        function toggleCurrency() {
+            var checkbox = document.querySelector('.switch input');
+            var currency = checkbox.checked ? 'USD' : 'INR';
+            window.location.href = "{{ url_for('analytics1') }}?currency=" + currency;
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div class="currency-switch-container">
+        <label class="switch">
+            <input type="checkbox" name="currency" value="USD" {% if currency == "USD" %}checked{% endif %} onchange="toggleCurrency()">
+            <span class="slider"></span>
+        </label>
+    </div>
+    <div class="title">{{ title }}</div>
+    <div class="subtitle">Let's discover your financial journey.</div>
+    <form method="post" action="{{ url_for('post_analytics1') }}">
+        <input type="hidden" name="ai_analysis" value="{{ ai_analysis }}">
+        <button class="button" type="submit">Next</button>
+    </form>
+</div>
+</body>
+</html>
