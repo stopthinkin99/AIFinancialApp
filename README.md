@@ -22,7 +22,7 @@ This project is a comprehensive financial analysis application that leverages AI
 ## Getting Started
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/stopthinkin99/bank-statement-analytics-app.git
+   git clone https://github.com/stopthinkin99/AIFinancialApp.git
    cd bank-statement-analytics-app
    ```
 
